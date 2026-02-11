@@ -1,277 +1,357 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shreyas T S | Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shreyas T S | AI × Android Developer</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-scroll-behavior:smooth;
-font-family:'Poppins',sans-serif;
-}
+  <style>
+    :root {
+      --bg: #0a0e17;
+      --text: #e2e8f0;
+      --accent: #00f0ff;
+      --accent-dark: #00b7eb;
+      --glass: rgba(20, 25, 45, 0.5);
+      --blur: blur(16px);
+      --shadow: 0 8px 32px rgba(0, 240, 255, 0.15);
+    }
 
-body{
-background:#0f172a;
-color:white;
-transition:0.4s;
-}
+    body.light {
+      --bg: #f1f5f9;
+      --text: #1e293b;
+      --accent: #6366f1;
+      --accent-dark: #4f46e5;
+      --glass: rgba(255, 255, 255, 0.7);
+      --shadow: 0 8px 32px rgba(99, 102, 241, 0.2);
+    }
 
-body.light{
-background:#f8fafc;
-color:#111;
-}
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      transition: all 0.5s ease;
+    }
 
-nav{
-position:fixed;
-top:0;
-width:100%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 8%;
-background:rgba(0,0,0,0.6);
-backdrop-filter:blur(10px);
-z-index:1000;
-}
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--glass);
+      backdrop-filter: var(--blur);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      z-index: 1000;
+    }
 
-nav h2{
-font-weight:600;
-}
+    nav .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      background: linear-gradient(90deg, var(--accent), #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-nav ul{
-display:flex;
-gap:25px;
-list-style:none;
-}
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
 
-nav a{
-color:white;
-text-decoration:none;
-font-size:14px;
-}
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
 
-body.light nav a{
-color:#111;
-}
+    .nav-links a:hover { color: var(--accent); }
 
-.toggle{
-cursor:pointer;
-background:#6366f1;
-padding:6px 12px;
-border-radius:20px;
-font-size:12px;
-}
+    .toggle-btn {
+      background: linear-gradient(45deg, var(--accent), var(--accent-dark));
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
 
-section{
-padding:100px 8%;
-min-height:100vh;
-}
+    /* Mobile Nav */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        flex-direction: column;
+        background: var(--glass);
+        backdrop-filter: var(--blur);
+        padding: 1.5rem;
+        gap: 1.5rem;
+        transform: translateY(-100%);
+        transition: transform 0.4s ease;
+      }
+      .nav-links.active { transform: translateY(0); }
+      .hamburger { display: block; cursor: pointer; font-size: 1.5rem; }
+    }
 
-.hero{
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-}
+    .hamburger { display: none; }
 
-.hero img{
-width:160px;
-height:160px;
-border-radius:50%;
-margin-bottom:20px;
-border:4px solid #6366f1;
-object-fit:cover;
-}
+    section { padding: 6rem 5% 4rem; }
 
-.hero h1{
-font-size:42px;
-margin-bottom:10px;
-}
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 5%;
+    }
 
-.typing{
-color:#6366f1;
-font-weight:600;
-font-size:20px;
-height:30px;
-}
+    .hero img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 4px solid var(--accent);
+      box-shadow: 0 0 40px rgba(0,240,255,0.3);
+      margin-bottom: 1.5rem;
+      object-fit: cover;
+    }
 
-.btn{
-display:inline-block;
-margin-top:20px;
-padding:10px 20px;
-background:#6366f1;
-color:white;
-border-radius:25px;
-text-decoration:none;
-transition:0.3s;
-}
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.5rem, 10vw, 5rem);
+      background: linear-gradient(90deg, var(--accent), #a78bfa, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.8rem;
+    }
 
-.btn:hover{
-background:#4f46e5;
-}
+    .tagline { font-size: 1.4rem; color: var(--accent); margin: 1rem 0 2rem; }
 
-.projects{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:30px;
-margin-top:40px;
-}
+    .btn {
+      padding: 0.9rem 2rem;
+      background: linear-gradient(45deg, var(--accent), var(--accent-dark));
+      color: white;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.4s;
+      box-shadow: var(--shadow);
+    }
 
-.card{
-background:#1e293b;
-padding:20px;
-border-radius:15px;
-transition:0.3s;
-cursor:pointer;
-text-decoration:none;
-color:white;
-}
+    .btn:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,240,255,0.3); }
 
-body.light .card{
-background:white;
-color:black;
-}
+    h2 {
+      text-align: center;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.8rem;
+      margin-bottom: 3rem;
+      background: linear-gradient(90deg, var(--accent), #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-.card:hover{
-transform:translateY(-8px);
-}
+    .about, .skills, .education, .experience, .projects, .achievements {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
 
-.card img{
-width:100%;
-border-radius:10px;
-margin-bottom:15px;
-}
+    .skills-grid, .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+    }
 
-footer{
-text-align:center;
-padding:30px;
-background:#111827;
-}
+    .card {
+      background: var(--glass);
+      backdrop-filter: var(--blur);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 1.8rem;
+      transition: all 0.4s ease;
+      box-shadow: var(--shadow);
+    }
 
-body.light footer{
-background:#e2e8f0;
-}
+    .card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 25px 60px rgba(0,240,255,0.25);
+    }
 
-.social{
-margin-top:20px;
-}
+    .skill-item { font-size: 1.1rem; margin: 0.6rem 0; }
+    .skill-item i { color: var(--accent); margin-right: 0.8rem; }
 
-.social a{
-margin:0 10px;
-text-decoration:none;
-color:#6366f1;
-font-weight:600;
-}
+    .project-card h3 { color: var(--accent); margin-bottom: 0.8rem; }
+    .tech { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
+    .tech span {
+      background: rgba(99,102,241,0.2);
+      color: var(--accent);
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+    }
 
-@media(max-width:768px){
-.hero h1{
-font-size:28px;
-}
-}
-</style>
+    .timeline-item {
+      margin-bottom: 2rem;
+      padding-left: 2rem;
+      border-left: 3px solid var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 5%;
+      background: linear-gradient(to top, rgba(10,14,23,0.9), transparent);
+    }
+
+    @media (max-width: 768px) {
+      section { padding: 5rem 5% 3rem; }
+      h2 { font-size: 2.2rem; }
+      .hero h1 { font-size: 3.5rem; }
+      .hero img { width: 140px; height: 140px; }
+    }
+  </style>
 </head>
-
 <body>
 
-<nav>
-<h2>Shreyas T S</h2>
-<ul>
-<li><a href="#home">Home</a></li>
-<li><a href="#projects">Projects</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-<div class="toggle" onclick="toggleMode()">Toggle</div>
-</nav>
+  <nav>
+    <div class="logo">Shreyas T S</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="toggle-btn" onclick="toggleTheme()">Light Mode</button>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+  </nav>
 
-<!-- HOME -->
-<section class="hero" id="home">
-<img src="profile.jpg" alt="Profile">
-<h1>Hi, I'm Shreyas T S</h1>
-<div class="typing" id="typing"></div>
+  <section class="hero" id="home">
+    <img src="profile.jpg" alt="Shreyas T S">
+    <h1>Shreyas T S</h1>
+    <div class="tagline">AI & Android Developer | YOLOv8 Specialist</div>
+    <a href="Shreyas T S Resume.pdf" download class="btn">Download Resume</a>
+  </section>
 
-<a href="Shreyas T S Resume.pdf" download class="btn">Download Resume</a>
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="card about">
+      <p>Computer Science Engineering student with hands-on experience in Android development, AI-based systems, and Firebase-backed applications. Strong problem-solving skills with real-time systems, REST APIs, and collaborative development. Currently pursuing an industry internship to strengthen practical software engineering skills.</p>
+      <p style="margin-top:1rem;">CGPA: 8.44 | Passionate about building impactful real-world solutions like wildlife safety & digital payments.</p>
+    </div>
+  </section>
 
-<div class="social">
-<a href="https://github.com/shreyasts01" target="_blank">GitHub</a>
-<a href="https://linkedin.com/in/YOUR-LINK" target="_blank">LinkedIn</a>
-<a href="https://instagram.com/YOUR-ID" target="_blank">Instagram</a>
-</div>
-</section>
+  <section id="skills">
+    <h2>Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="card">
+        <h3>Languages</h3>
+        <div class="skill-item"><i class="fab fa-java"></i>Java, C, Python, SQL, HTML, CSS, JavaScript</div>
+      </div>
+      <div class="card">
+        <h3>Frameworks & Tools</h3>
+        <div class="skill-item"><i class="fas fa-fire"></i>Firebase, YOLOv8, Flask, REST APIs</div>
+        <div class="skill-item"><i class="fab fa-git-alt"></i>Git, VS Code, Android Studio</div>
+      </div>
+    </div>
+  </section>
 
-<!-- PROJECTS -->
-<section id="projects">
-<h2 style="text-align:center;">Projects</h2>
+  <section id="education-experience">
+    <h2>Education & Experience</h2>
+    <div class="card">
+      <div class="timeline-item">
+        <strong>B.E. in Computer Science & Engineering</strong><br>
+        Vivekananda College of Engineering and Technology, Puttur (2022 – Present)<br>
+        CGPA: 8.44
+      </div>
+      <div class="timeline-item">
+        <strong>Class XII (PCMCs)</strong><br>
+        SDM PU College, Ujire (2022) – 92.3%
+      </div>
+      <div class="timeline-item">
+        <strong>Trainee Software Engineer (Pursuing)</strong><br>
+        Inventeron Technologies (Feb 2026 – Present)<br>
+        Hands-on training in development tools, version control, debugging, and collaborative workflows.
+      </div>
+    </div>
+  </section>
 
-<div class="projects">
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects-grid">
 
-<a href="https://github.com/shreyasts01/WildGuard-Project" target="_blank" class="card">
-<img src="wildguard.jpg" alt="">
-<h3>WildGuard</h3>
-<p>YOLOv8-based Real-Time Wildlife Detection and Alert System using Android + Firebase.</p>
-</a>
+      <div class="card project-card">
+        <h3>WildGuard – Real-Time Wildlife Intrusion Alert System</h3>
+        <p>Android app to detect wild animals on roads and alert drivers within 1 km radius. Won 1st Place at JnanaSangama 2025 (National Level).</p>
+        <ul>
+          <li>Trained YOLOv8 on 20,000+ images for 6 species (elephant, cheetah, deer, bear, etc.)</li>
+          <li>Python backend for real-time detection & snapshot capture</li>
+          <li>Firebase integration for alerts (notifications, alarms, text-to-speech)</li>
+        </ul>
+        <div class="tech">
+          <span>YOLOv8</span><span>OpenCV</span><span>Firebase</span><span>Kotlin</span><span>Google Maps</span>
+        </div>
+      </div>
 
-<a href="https://github.com/shreyasts01/digitip" target="_blank" class="card">
-<img src="digitip.jpg" alt="">
-<h3>Skill Lab</h3>
-<p>Android application built using Kotlin for skill-based learning.</p>
-</a>
+      <div class="card project-card">
+        <h3>DigiTip – Digital Cashless Tipping Platform</h3>
+        <p>QR-based seamless bill & tip payment system reducing transaction time by 40% with 100% accurate routing to hotels/workers.</p>
+        <div class="tech">
+          <span>Android</span><span>QR Code</span><span>Payment Integration</span>
+        </div>
+      </div>
 
-</div>
-</section>
+    </div>
+  </section>
 
-<!-- CONTACT -->
-<section id="contact">
-<h2 style="text-align:center;">Contact Me</h2>
+  <section id="achievements">
+    <h2>Achievements & Certifications</h2>
+    <div class="card">
+      <ul>
+        <li>1st Place – JnanaSangama 2025 (National Level) for WildGuard</li>
+        <li>NPTEL Elite – Software Testing (IIT Bangalore)</li>
+        <li>Deloitte Data Analytics Job Simulation – Forage</li>
+        <li>Infosys Springboard – Database, SQL, AI-First Software Engineering</li>
+      </ul>
+    </div>
+  </section>
 
-<div style="text-align:center;margin-top:30px;">
-<p>Email: yourmail@gmail.com</p>
-<p>Phone: +91 XXXXX XXXXX</p>
-</div>
-</section>
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <div class="card" style="text-align:center;">
+      <p><i class="fas fa-phone"></i> +91 9483278461</p>
+      <p><i class="fas fa-envelope"></i> <a href="mailto:tsshreyas4@gmail.com" style="color:var(--accent);">tsshreyas4@gmail.com</a></p>
+      <p style="margin-top:1.5rem;">
+        <a href="YOUR_LINKEDIN" target="_blank" style="color:var(--accent); margin:0 1rem;"><i class="fab fa-linkedin fa-2x"></i></a>
+        <a href="https://github.com/shreyasts01" target="_blank" style="color:var(--accent); margin:0 1rem;"><i class="fab fa-github fa-2x"></i></a>
+      </p>
+    </div>
+  </section>
 
-<footer>
-<p>© 2026 Shreyas T S | AI & Android Developer</p>
-</footer>
+  <footer>
+    <p>© 2026 Shreyas T S | Building Smarter Systems with AI & Android</p>
+  </footer>
 
-<script>
-// Dark Light Toggle
-function toggleMode(){
-document.body.classList.toggle("light");
-}
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle("light");
+      const btn = document.querySelector(".toggle-btn");
+      btn.textContent = document.body.classList.contains("light") ? "Dark Mode" : "Light Mode";
+    }
 
-// Typing Animation
-const words=["AI Developer","Android Developer","YOLOv8 Enthusiast","Firebase Integrator"];
-let i=0;
-let j=0;
-let currentWord="";
-let isDeleting=false;
-
-function type(){
-currentWord=words[i];
-if(!isDeleting){
-document.getElementById("typing").textContent=currentWord.substring(0,j++);
-if(j>currentWord.length+5){
-isDeleting=true;
-}
-}else{
-document.getElementById("typing").textContent=currentWord.substring(0,j--);
-if(j==0){
-isDeleting=false;
-i=(i+1)%words.length;
-}
-}
-setTimeout(type,100);
-}
-
-type();
-</script>
+    function toggleMenu() {
+      document.querySelector(".nav-links").classList.toggle("active");
+    }
+  </script>
 
 </body>
 </html>
